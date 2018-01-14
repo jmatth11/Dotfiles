@@ -70,3 +70,11 @@ let g:qs_highlight_on_keys = ['f', 'F']
 
 set foldmethod=indent
 set number
+set rnu
+
+" tab mappings
+map <C-t><up> :tabr<cr>
+map <C-t><down> :tabl<cr>
+map <C-t><left> :tabp<cr>
+map <C-t><right> :tabn<cr>
+
