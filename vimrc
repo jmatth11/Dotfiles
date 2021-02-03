@@ -1,10 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-set backspace=2 " vim wasn't backspacing properly
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -19,9 +15,6 @@ Plugin 'tpope/vim-fugitive'
 " basically a linter
 Plugin 'scrooloose/syntastic'
 
-" vim completion and things
-Plugin 'vim-ruby/vim-ruby'
-
 " tab completion for anything it knows about
 Plugin 'ervandew/supertab'
 
@@ -34,14 +27,11 @@ Plugin 'rhysd/vim-clang-format'
 " indention highlighting
 Plugin 'nathanaelkane/vim-indent-guides'
 
-" theme 
-Plugin 'nanotech/jellybeans.vim'
-
-" theme
-Plugin 'morhetz/gruvbox'
-
 " quickly jump to any spot in line
 Plugin 'unblevable/quick-scope'
+
+" gui for undo tree
+Plugin 'mbbill/undotree'
 
 " ruby completion
 Plugin 'osyo-manga/vim-monster'
@@ -54,6 +44,7 @@ Plugin 'felix-d/slimux'
 
 " go development plugin for vim
 Plugin 'fatih/vim-go'
+Plugin 'tweekmonster/gofmt.vim'
 
 " general javascript highlighting and indenting
 Plugin 'pangloss/vim-javascript'
@@ -76,9 +67,13 @@ Plugin 'vim-airline/vim-airline'
 " easily align text based off of a symbol
 Plugin 'junegunn/vim-easy-align'
 
-" have sublime like multiple cursor edits
-" FIXME Cannot get to work for some reason
-Plugin 'terryma/vim-multiple-cursors'
+" a multi language graphical debugger
+Plugin 'puremourning/vimspector'
+
+" theme 
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -86,6 +81,28 @@ filetype plugin indent on    " required
 syntax on
 colorscheme gruvbox 
 set background=dark
+
+set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
+
+set backspace=2 " vim wasn't backspacing properly
+
+set foldmethod=indent
+set nohlsearch
+set number
+set rnu
+set nowrap
+set noerrorbells
+set incsearch
+set termguicolors
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set scrolloff=8
+
+set updatetime=50
+
+set colorcolumn=80
 
 " vim javascript highlight jsdoc
 let g:javascript_plugin_jsdoc = 1
@@ -168,6 +185,13 @@ map <C-t><right> :tabn<cr>
 
 " NERDTree quick toggle
 map <C-n> :NERDTreeToggle<cr>
+
+" git mappings
+nnoremap <leader>gc :GBranches<CR>
+nnoremap <leader>ga :Git fetch --all<CR>
+
+" undo tree mappings
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " Disable Arrow keys in Escape mode
 map <up> <nop>
