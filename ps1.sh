@@ -10,4 +10,4 @@ function face_display() {
     fi
 }
 
-export PS1="|[ \$(face_display) ]-[\e[0;34m\u\e[m\e[1;33m@\e[0;35m\h\e[m]-[\$(working_dir)]\n\\-> "
+export PS1="/[ \$(face_display) ]-[\e[0;34m\u\e[m\e[1;33m@\e[0;35m\h\e[m]-[\$(working_dir)]\n\\-> "
