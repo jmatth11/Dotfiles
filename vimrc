@@ -12,9 +12,6 @@ Plugin 'scrooloose/nerdtree'
 " quick git commands
 Plugin 'tpope/vim-fugitive'
 
-" basically a linter
-Plugin 'scrooloose/syntastic'
-
 " tab completion for anything it knows about
 Plugin 'ervandew/supertab'
 
@@ -72,20 +69,28 @@ Plugin 'puremourning/vimspector'
 
 " theme 
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'morhetz/gruvbox'
-
+Plugin 'gruvbox-community/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 syntax on
+
 colorscheme gruvbox 
 set background=dark
 
+" needed to correct problem with colorscheme inside of tmux
+set t_Co=256
+
 set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
+set smartindent
 
-set backspace=2 " vim wasn't backspacing properly
+" vim doesn't perform a backspace in some instances
+" so set this
+set backspace=2
 
+
+set guicursor= 
 set foldmethod=indent
 set nohlsearch
 set number
@@ -93,11 +98,11 @@ set rnu
 set nowrap
 set noerrorbells
 set incsearch
-set termguicolors
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
+set termguicolors
 set scrolloff=8
 
 set updatetime=50
@@ -108,18 +113,6 @@ set colorcolumn=80
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_conceal_function = "ƒ"
 let g:javascript_conceal_null = "ø"
-
-" use jshint for syntax checking
-let g:syntastic_javascript_checkers = ['jshint']
-" good default settings for syntaxer
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " setting highlighting to only be done when f is pressed.
 let g:qs_highlight_on_keys = ['f', 'F']
@@ -172,10 +165,6 @@ xmap ga <Plug>(EasyAlign)
 
 " start interactive EasyAlign in normal mode
 nmap ga <Plug>(EasyAlign)
-
-set foldmethod=indent
-set number
-set rnu
 
 " tab mappings
 map <C-t><up> :tabr<cr>
