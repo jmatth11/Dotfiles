@@ -67,6 +67,9 @@ Plugin 'junegunn/vim-easy-align'
 " a multi language graphical debugger
 Plugin 'puremourning/vimspector'
 
+" man page in vim
+Plugin 'vim-utils/vim-man'
+
 " theme 
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'gruvbox-community/gruvbox'
