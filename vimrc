@@ -101,7 +101,6 @@ set rnu
 set nowrap
 set noerrorbells
 set incsearch
-set inccommand=split
 set noswapfile
 set nobackup
 set undodir=~/.vim/undodir
