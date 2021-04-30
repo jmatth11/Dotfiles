@@ -79,8 +79,8 @@ set t_Co=256
 set tabstop=4 softtabstop=4 expandtab shiftwidth=4 smarttab
 set smartindent
 
-" vim doesn't perform a backspace in some instances
-" so set this
+" vim's default for backspace limits it's use.
+" set to 2 which allows backspace on: indent, eol, and start
 set backspace=2
 
 set guicursor= 
