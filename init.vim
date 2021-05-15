@@ -47,6 +47,7 @@ endif
 " tree-sitter needs gcc
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" easy file markers
 Plug 'ThePrimeagen/harpoon'
 
 " web devicon support
