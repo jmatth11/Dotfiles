@@ -16,11 +16,11 @@ set wildignore+=**/.git/*
 call plug#begin("~/AppData/Local/nvim/plugged")
 
 " Code completion (want to replace with LSP at some point)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Language server protocol plugins (can't get to work on windows right now)
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 " navigate project in directory tree format
 Plug 'scrooloose/nerdtree'
@@ -42,9 +42,13 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 if has('win32') || has('win64')
     " Windows find and grep 
     Plug 'BurntSushi/ripgrep'
-else
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
+
+" tree-sitter needs gcc
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'ThePrimeagen/harpoon'
+
 " web devicon support
 Plug 'kyazdani42/nvim-web-devicons'
 
@@ -52,14 +56,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'gruvbox-community/gruvbox'
 " spacemacs theme
 Plug 'colepeters/spacemacs-theme.vim'
-
-" syntax highlighting for javascript
-Plug 'pangloss/vim-javascript'
-" syntax highlighting for vue.js
-Plug 'posva/vim-vue'
-
-" formatter for listed programming languages
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'css', 'json', 'vue', 'html' ] }
 
 " status line of info
 Plug 'vim-airline/vim-airline'
@@ -84,7 +80,6 @@ set smartindent
 set backspace=2
 
 set guicursor= 
-set foldmethod=indent
 set nohlsearch
 set number
 set rnu
@@ -145,70 +140,57 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" FindVar overrides
-" let g:findvar_default_file_matching = '*.json,*.vue,*.js'
-" let g:findvar_default_dir_exclude = 'node_modules,dist_electron,dist'
+" harpoon remaps
+nnoremap <leader>ht <cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
+nnoremap <leader>hm <cmd>lua require("harpoon.mark").add_file()<cr>
+nnoremap <leader>hc <cmd>lua require("harpoon.mark").clear_all()<cr>
 
-" grep for word in files FindVar
-" nnoremap <leader>fg :FindVar<cr>
-" autocmd FileType findvar nnoremap <buffer> <cr> :FindVarOpenFile<cr>
+" tree sitter configurations
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",
+    highlight = {
+        enable = true,
+    },
+    indent = {
+        enable = true
+    }
+}
+EOF
 
-" prettier config
-let g:prettier#config#print_width = 120
-let g:prettier#config#tab_width = 3
-let g:prettier#config#use_tabs = 'false'
-let g:prettier#config#single_quote = 'false'
-let g:prettier#config#arrow_parens = "avoid"
-let g:prettier#config#trailing_comma = "none"
-let g:prettier#config#jsx_bracket_same_line = 'true'
-
-" run prettier on pre-save
-autocmd BufWritePre *.js Prettier
-autocmd BufWritePre *.vue Prettier
+" use tree sitter for folding
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 " Language server protocol stuff
-" lua << EOF
-" require'lspconfig'.vuels.setup{}
-" require'lspconfig'.tsserver.setup{}
-" require'lspconfig'.jsonls.setup{}
-" EOF
-" let g:LanguageClient_serverCommands = {
-"             \ 'vue': ['vls'],
-"             \ 'js': ['tsserver']
-"             \}
-" 
-" " autocmd BufEnter * lua require'completion'.on_attach()
-" 
-" " " use tab and s-tab to navigate through popup menus
-" " inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" " 
-" " " Set completeopt to have a better completion experience
-" set completeopt=menuone,noselect
-" " " Avoid showing message extra message when using completion
-" " set shortmess+=c
-" " " c-p to trigger completion
-" " imap <silent> <c-p> <Plug>(comlpetion_trigger)
-" 
+lua <<EOF
+require'lspconfig'.clangd.setup{}
+EOF
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noselect
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
 " " nvim-compe defaults
-" let g:compe = {}
-" let g:compe.enabled = v:true
-" let g:compe.autocomplete = v:true
-" let g:compe.debug = v:false
-" let g:compe.min_length = 1
-" let g:compe.preselect = 'enable'
-" let g:compe.throttle_time = 80
-" let g:compe.source_timeout = 200
-" let g:compe.incomplete_delay = 400
-" let g:compe.max_abbr_width = 100
-" let g:compe.max_kind_width = 100
-" let g:compe.max_menu_width = 100
-" let g:compe.documentation = v:true
-" 
-" let g:compe.source = {}
-" let g:compe.source.path = v:true
-" let g:compe.source.buffer = v:true
-" let g:compe.source.calc = v:true
-" let g:compe.source.nvim_lsp = v:true
-" let g:compe.source.nvim_lua = v:true
-" let g:compe.source.vsnip = v:true
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
