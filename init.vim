@@ -195,3 +195,17 @@ let g:compe.source.calc = v:true
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
+
+" LSP mappings
+nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap <leader>gD <cmd>lua vim.lsp.buf.declaration()<cr>
+nnoremap <leader>gr <cmd>lua vim.lsp.buf.references()<cr>
+nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<cr>
+nnoremap <leader>K <cmd>lua vim.lsp.buf.hover()<cr>
+nnoremap <leader>Ks <cmd>lua vim.lsp.buf.signature_help()<cr>
+nnoremap <leader>Kp <cmd>lua vim.lsp.buf.goto_prev()<cr>
+nnoremap <leader>Kn <cmd>lua vim.lsp.buf.goto_next()<cr>
+
+" autoformat
+autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
+autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 100)
