@@ -1,7 +1,9 @@
 set path+=**
 
+let plugin_install = '~/.config/nvim/plugged'
 if has('win32') || has('win64')
     let &shell='cmd.exe'
+    let plugin_install = '~/AppData/Local/nvim/plugged'
 endif
 
 " Nice menu when typing `:find *.py`
@@ -13,10 +15,7 @@ set wildignore+=*_build/*
 set wildignore+=**/node_modules/*
 set wildignore+=**/.git/*
 
-call plug#begin("~/AppData/Local/nvim/plugged")
-
-" Code completion (want to replace with LSP at some point)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#begin(plugin_install)
 
 " Language server protocol plugins (can't get to work on windows right now)
 Plug 'neovim/nvim-lspconfig'
@@ -27,8 +26,12 @@ Plug 'scrooloose/nerdtree'
 " highlighting for {F|f} and {T|t}
 Plug 'unblevable/quick-scope'
 
+" quick way to get cheat sheet helpers
+Plug 'dbeniamine/cheat.sh-vim'
+
 " git wrapper
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " view man pages in vim
 Plug 'vim-utils/vim-man'
 " navigate vim's undotree in a graphical tree format
@@ -113,10 +116,10 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='dark'
 
 " tab mappings
-map <C-t><up> :tabr<cr>
-map <C-t><down> :tabl<cr>
-map <C-t><left> :tabp<cr>
-map <C-t><right> :tabn<cr>
+nnoremap <leader>tr <cmd>tabr<cr>
+nnoremap <leader>tl <cmd>tabl<cr>
+nnoremap <leader>tp <cmd>tabp<cr>
+nnoremap <leader>tn <cmd>tabn<cr>
 
 " NERDTree quick toggle
 map <C-n> :NERDTreeToggle<cr>
@@ -125,6 +128,8 @@ map <C-n> :NERDTreeToggle<cr>
 nnoremap <leader>gc :GBranches<CR>
 nnoremap <leader>ga :Git fetch --all<CR>
 nnoremap <leader>gb :Git blame<cr>
+" git gutter mappings
+nnoremap <leader>gp <cmd>GitGutterPreviewHunk<cr>
 
 " undo tree mappings
 nnoremap <leader>u :UndotreeToggle<CR>
@@ -146,6 +151,19 @@ nnoremap <leader>ht <cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>
 nnoremap <leader>hm <cmd>lua require("harpoon.mark").add_file()<cr>
 nnoremap <leader>hc <cmd>lua require("harpoon.mark").clear_all()<cr>
 
+" LSP mappings
+nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap <leader>gD <cmd>lua vim.lsp.buf.declaration()<cr>
+nnoremap <leader>gr <cmd>lua vim.lsp.buf.references()<cr>
+nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<cr>
+nnoremap <leader>K <cmd>lua vim.lsp.buf.hover()<cr>
+nnoremap <leader>Ks <cmd>lua vim.lsp.buf.signature_help()<cr>
+nnoremap <leader>Kp <cmd>lua vim.lsp.buf.goto_prev()<cr>
+nnoremap <leader>Kn <cmd>lua vim.lsp.buf.goto_next()<cr>
+nnoremap <leader>rn    <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <leader><C-f> <cmd>lua vim.lsp.buf.formatting()<cr>
+nnoremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
+
 " tree sitter configurations
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -162,10 +180,31 @@ EOF
 " use tree sitter for folding
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
 
 " Language server protocol stuff
 lua <<EOF
 require'lspconfig'.clangd.setup{}
+require'lspconfig'.pylsp.setup{
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                    addIgnore = {"C0325","C0111","C0103","W0702"},
+                    maxLineLength = 90
+                },
+                pylint = {
+                    enabled = true,
+--                    executable = "path/to/executable"
+                },
+                yapf = {
+                    enabled = true
+                }
+            }
+        }
+    }
+}
+require'lspconfig'.tsserver.setup{}
 EOF
 
 " Set completeopt to have a better completion experience
@@ -196,15 +235,7 @@ let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 
-" LSP mappings
-nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<cr>
-nnoremap <leader>gD <cmd>lua vim.lsp.buf.declaration()<cr>
-nnoremap <leader>gr <cmd>lua vim.lsp.buf.references()<cr>
-nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<cr>
-nnoremap <leader>K <cmd>lua vim.lsp.buf.hover()<cr>
-nnoremap <leader>Ks <cmd>lua vim.lsp.buf.signature_help()<cr>
-nnoremap <leader>Kp <cmd>lua vim.lsp.buf.goto_prev()<cr>
-nnoremap <leader>Kn <cmd>lua vim.lsp.buf.goto_next()<cr>
+
 
 " autoformat
 autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
