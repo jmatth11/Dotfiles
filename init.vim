@@ -262,8 +262,8 @@ function openTerminalWithCommand(command)
 end
 EOF
 
--- example usage
--- nnoremap <leader>bp <cmd>lua openTerminalWithCommand("command here")<cr>
+" example usage
+" nnoremap <leader>bp <cmd>lua openTerminalWithCommand("command here")<cr>
 nnoremap <leader>bd <cmd>bd!<cr>
 
 " configure ale 
