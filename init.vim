@@ -53,6 +53,12 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " easy file markers
 Plug 'ThePrimeagen/harpoon'
 
+" formatter (prettier, etc)
+Plug 'sbdchd/neoformat'
+
+" linter (eslint, etc)
+Plug 'dense-analysis/ale'
+
 " web devicon support
 Plug 'kyazdani42/nvim-web-devicons'
 
@@ -195,7 +201,7 @@ require'lspconfig'.pylsp.setup{
                 },
                 pylint = {
                     enabled = true,
---                    executable = "path/to/executable"
+--                    executable = "/path/to/executable"
                 },
                 yapf = {
                     enabled = true
@@ -204,7 +210,15 @@ require'lspconfig'.pylsp.setup{
         }
     }
 }
-require'lspconfig'.tsserver.setup{}
+require'lspconfig'.tsserver.setup{
+    init_options = {
+        hostInfo = "neovim",
+        preferences = {
+            disableSuggestions = false,
+            quotePreference = "single"
+        }
+    }
+}
 EOF
 
 " Set completeopt to have a better completion experience
@@ -235,8 +249,33 @@ let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
 
-
-
 " autoformat
 autocmd BufWritePre *.c lua vim.lsp.buf.formatting_sync(nil, 100)
 autocmd BufWritePre *.h lua vim.lsp.buf.formatting_sync(nil, 100)
+
+" kludge for quickly executing terminal commands
+lua <<EOF
+function openTerminalWithCommand(command)
+    local term_buf = vim.api.nvim_create_buf(true, false)
+    vim.api.nvim_open_term(term_buf, {})
+    vim.cmd("terminal " .. command)
+end
+EOF
+
+-- example usage
+-- nnoremap <leader>bp <cmd>lua openTerminalWithCommand("command here")<cr>
+nnoremap <leader>bd <cmd>bd!<cr>
+
+" configure ale 
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+            \ "javascript": ["eslint"]
+            \}
+
+augroup PRE_SAVE_STUFF
+    autocmd!
+    " run neoformat on js files
+    autocmd BufWritePre *.js Neoformat
+    " get rid of trailing whitespace
+    autocmd BufWritePre * %s/\s\+$//e
+augroup END
