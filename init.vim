@@ -41,7 +41,7 @@ Plug 'mbbill/undotree'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 if has('win32') || has('win64')
     " Windows find and grep 
     Plug 'BurntSushi/ripgrep'
@@ -187,6 +187,11 @@ EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
+
+" telescope config
+lua <<EOF
+require'telescope'.load_extension('fzf')
+EOF
 
 " Language server protocol stuff
 lua <<EOF
