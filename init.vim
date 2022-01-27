@@ -43,7 +43,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 if has('win32') || has('win64')
-    " Windows find and grep 
+    " Windows find and grep
     Plug 'BurntSushi/ripgrep'
 endif
 
@@ -70,13 +70,19 @@ Plug 'colepeters/spacemacs-theme.vim'
 " status line of info
 Plug 'vim-airline/vim-airline'
 
+" go plugin (unfortunately still the best in LSP regards)
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" test local pluggins
+Plug '~/.config/nvim/plugged/test-lua.nvim'
+
 call plug#end()
 
 filetype plugin indent on    " required
 
 syntax enable
 
-colorscheme gruvbox 
+colorscheme gruvbox
 set background=dark
 
 " needed to correct problem with colorscheme inside of tmux
@@ -89,7 +95,7 @@ set smartindent
 " set to 2 which allows backspace on: indent, eol, and start
 set backspace=2
 
-set guicursor= 
+set guicursor=
 set nohlsearch
 set number
 set rnu
@@ -190,7 +196,17 @@ set nofoldenable
 
 " telescope config
 lua <<EOF
-require'telescope'.load_extension('fzf')
+require('telescope').setup {
+    extensions = {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        }
+    }
+}
+require('telescope').load_extension("fzf")
 EOF
 
 " Language server protocol stuff
@@ -271,7 +287,7 @@ EOF
 " nnoremap <leader>bp <cmd>lua openTerminalWithCommand("command here")<cr>
 nnoremap <leader>bd <cmd>bd!<cr>
 
-" configure ale 
+" configure ale
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
             \ "javascript": ["eslint"]
