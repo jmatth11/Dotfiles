@@ -146,7 +146,7 @@ nnoremap <leader>gp <cmd>GitGutterPreviewHunk<cr>
 " undo tree mappings
 nnoremap <leader>u :UndotreeToggle<CR>
 
-" Disable Arrow keys in Escape mode
+" Disable Arrow keys in all modes
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
