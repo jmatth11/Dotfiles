@@ -41,11 +41,8 @@ Plug 'mbbill/undotree'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-if has('win32') || has('win64')
-    " Windows find and grep
-    Plug 'BurntSushi/ripgrep'
-endif
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+Plug 'BurntSushi/ripgrep'
 
 " tree-sitter needs gcc
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -179,7 +176,6 @@ nnoremap <leader>ca <cmd>lua vim.lsp.buf.code_action()<cr>
 " tree sitter configurations
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "maintained",
     highlight = {
         enable = true,
     },
@@ -236,10 +232,12 @@ require'lspconfig'.tsserver.setup{
         hostInfo = "neovim",
         preferences = {
             disableSuggestions = false,
-            quotePreference = "single"
         }
     }
 }
+require("lspconfig").csharp_ls.setup({})
+require("lspconfig").angularls.setup({})
+require("lspconfig").eslint.setup({})
 EOF
 
 " Set completeopt to have a better completion experience
@@ -287,16 +285,8 @@ EOF
 " nnoremap <leader>bp <cmd>lua openTerminalWithCommand("command here")<cr>
 nnoremap <leader>bd <cmd>bd!<cr>
 
-" configure ale
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-            \ "javascript": ["eslint"]
-            \}
-
 augroup PRE_SAVE_STUFF
     autocmd!
-    " run neoformat on js files
-    autocmd BufWritePre *.js Neoformat
     " get rid of trailing whitespace
     autocmd BufWritePre * %s/\s\+$//e
 augroup END
