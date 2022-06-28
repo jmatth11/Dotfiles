@@ -102,6 +102,9 @@ local function config(_config)
 end
 
 require("lspconfig").tsserver.setup(config())
+require("lspconfig").csharp_ls.setup(config())
+require("lspconfig").eslint.setup(config())
+require("lspconfig").angularls.setup(config())
 
 --[[  I cannot seem to get this woring on new computer..
 require("lspconfig").clangd.setup(config({
