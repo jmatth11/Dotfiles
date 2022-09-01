@@ -3,6 +3,7 @@ local jmatthGroup = augroup("jmatth11", {})
 
 require("jmatth11.set")
 require("jmatth11.packer")
+require("jmatth11.telescope")
 
 local autocmd = vim.api.nvim_create_autocmd
 

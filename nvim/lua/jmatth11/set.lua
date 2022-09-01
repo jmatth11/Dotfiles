@@ -13,6 +13,7 @@ vim.opt.smartindent = true
 vim.opt.guicursor = ""
 vim.opt.errorbells = false
 -- turn on numbers
+vim.opt.number = true
 vim.opt.rnu = true
 -- don't wrap text
 vim.opt.wrap = false

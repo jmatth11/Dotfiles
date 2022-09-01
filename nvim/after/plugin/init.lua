@@ -1,1 +1,2 @@
-vim.cmd(":TSInstall all")
+
+require("lspsaga").init_lsp_saga()

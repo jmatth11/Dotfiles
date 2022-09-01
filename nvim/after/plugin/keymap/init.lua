@@ -1,5 +1,11 @@
 local nnoremap = require("jmatth11.keymap").nnoremap
 
+-- Disable Arrow keys in Escape mode
+nnoremap("<up>", "<nop>")
+nnoremap("<down>", "<nop>")
+nnoremap("<left>", "<nop>")
+nnoremap("<right>", "<nop>")
+
 -- convenient newlines
 nnoremap("<leader>o", "o<esc>")
 nnoremap("<leader>O", "O<esc>")
@@ -20,10 +26,7 @@ nnoremap("<leader>gp", ":GitGutterPreviewHunk<cr>")
 -- undo tree mappings
 nnoremap("<leader>u", ":UndotreeToggle<CR>")
 
-nnoremap("<leader><C-n>", ":NERDTree<CR>")
-
--- Disable Arrow keys in Escape mode
-nnoremap("<up>", "<nop>")
-nnoremap("<down>", "<nop>")
-nnoremap("<left>", "<nop>")
-nnoremap("<right>", "<nop>")
+-- remap these to also automatically center the cursor to the middle of the
+-- screen
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")

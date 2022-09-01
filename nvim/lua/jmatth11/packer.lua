@@ -15,7 +15,7 @@ return require("packer").startup(function(use)
     use("hrsh7th/cmp-buffer")
     use("hrsh7th/nvim-cmp")
     -- LSP essentials +
-    use("tzachar/cmp-tabnine", { run = "./install.sh" })
+    use({"tzachar/cmp-tabnine", run = "./install.sh" })
     use("onsails/lspkind-nvim")
     use("nvim-lua/lsp_extensions.nvim")
     use("glepnir/lspsaga.nvim")
@@ -41,17 +41,19 @@ return require("packer").startup(function(use)
     use("nvim-lua/popup.nvim")
     use("nvim-telescope/telescope.nvim")
     -- FZF native plugin for telescope
-    use("nvim-telescope/telescope-fzf-native.nvim", {
+    use({"nvim-telescope/telescope-fzf-native.nvim",
         run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
     })
     -- ripgrep commands
     use("BurntSushi/ripgrep")
     -- tree-sitter (abstract syntax tree)
-    use("nvim-treesitter/nvim-treesitter", {
-        run = ":TSUpdate"
+    use({"nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function()
+            local tsconfig = require("nvim-treesitter.configs")
+            tsconfig.setup(require("jmatth11.treesitter"))
+        end
     })
-
-    use("preservim/nerdtree")
 
     -- gruvbox theme
     use("gruvbox-community/gruvbox")
