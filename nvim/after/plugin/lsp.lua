@@ -103,6 +103,7 @@ end
 
 require("lspconfig").tsserver.setup(config())
 require("lspconfig").csharp_ls.setup(config())
+require("lspconfig").clangd.setup(config())
 require("lspconfig").eslint.setup(config())
 require("lspconfig").angularls.setup(config())
 require("lspconfig").ccls.setup(config())
