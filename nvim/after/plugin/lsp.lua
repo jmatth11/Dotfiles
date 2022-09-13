@@ -105,7 +105,7 @@ require("lspconfig").tsserver.setup(config())
 require("lspconfig").csharp_ls.setup(config())
 require("lspconfig").clangd.setup(config())
 require("lspconfig").eslint.setup(config())
-require("lspconfig").angularls.setup(config())
+-- require("lspconfig").angularls.setup(config())
 require("lspconfig").cssls.setup(config())
 require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },

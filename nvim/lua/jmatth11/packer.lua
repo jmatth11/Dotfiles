@@ -55,8 +55,10 @@ return require("packer").startup(function(use)
         end
     })
 
-    -- gruvbox theme
+    -- color themes
     use("gruvbox-community/gruvbox")
+    use({"catppuccin/nvim", as = "catppuccin"})
+    use("folke/tokyonight.nvim")
 
     -- interact with tree sitter
     use("nvim-treesitter/playground")
