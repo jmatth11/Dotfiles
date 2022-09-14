@@ -26,9 +26,6 @@ return require("packer").startup(function(use)
     -- Nice file markers
     use("ThePrimeagen/harpoon")
 
-    -- highlight for {F|f} and {T|t}
-    use("unblevable/quick-scope")
-
     -- Nice git wrapper functions
     use("tpope/vim-fugitive")
     use("airblade/vim-gitgutter")
