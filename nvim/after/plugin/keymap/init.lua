@@ -1,4 +1,5 @@
 local nnoremap = require("jmatth11.keymap").nnoremap
+local vnoremap = require("jmatth11.keymap").vnoremap
 
 -- Disable Arrow keys in Escape mode
 nnoremap("<up>", "<nop>")
@@ -30,3 +31,8 @@ nnoremap("<leader>u", ":UndotreeToggle<CR>")
 -- screen
 nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
+
+-- yank selected text into clipboard
+vnoremap("<leader>y", "\"*y")
+-- paste from clipboard
+nnoremap("<leader>p", "\"*p")
