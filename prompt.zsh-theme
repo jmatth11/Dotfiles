@@ -9,7 +9,7 @@ function prompt_machine_display_text() {
 function prompt_git_current_branch() {
     if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == "true" ]]; then
         cur_git_branch=$(git branch --show-current)
-        echo -e "-\e[7;37;44m($cur_git_branch)\e[m"
+        echo -e "-\e[0;37;40m($cur_git_branch)\e[m"
     fi
 }
 
@@ -21,5 +21,10 @@ function prompt_face_display() {
     fi
 }
 
-PROMPT='/[ $(prompt_face_display) ]-[$(prompt_machine_display_text)]-[$(prompt_working_dir)]$(prompt_git_current_branch)
-\-> '
+function prompt_ps1_text() {
+    echo -e "/[ \$(prompt_face_display) ]-[\$(prompt_machine_display_text)]-[\$(prompt_working_dir)]\$(prompt_git_current_branch)\n\\-> "
+}
+
+unset PS1
+PS1=$(prompt_ps1_text)
+
