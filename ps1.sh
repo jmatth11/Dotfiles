@@ -3,7 +3,7 @@ function prompt_working_dir() {
 }
 
 function prompt_machine_display_text() {
-    echo -e "\e[0;34m\u\e[m\e[1;33m@\e[0;35m\h\e[m"
+    echo -e "\e[0;34m$USER\e[m\e[1;33m@\e[0;35m$HOSTNAME\e[m"
 }
 
 function prompt_git_current_branch() {

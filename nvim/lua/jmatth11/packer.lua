@@ -66,6 +66,9 @@ return require("packer").startup(function(use)
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
 
+    -- local plugins
+    use("/media/jmatth93/ExtraDrive1/git/lua/notey.nvim")
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
