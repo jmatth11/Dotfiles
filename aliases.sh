@@ -14,3 +14,7 @@ function clean_branches() {
 function git_clone() {
     git clone https://jmatth11:$GITHUB_TOKEN@github.com/$1 $HOME/git/$1
 }
+
+function docker_rm_containers() {
+    sudo docker ps -a -q | xargs sudo docker rm
+}
