@@ -18,3 +18,15 @@ function git_clone() {
 function docker_rm_containers() {
     sudo docker ps -a -q | xargs sudo docker rm
 }
+
+function docker_kill_containers() {
+    sudo docker ps -a -q | xargs sudo docker kill
+}
+
+# check to see if your branch is out of date with origin
+# Returns diff if different, returns nothing if they are up-to-date.
+function git_branch_needs_update() {
+    if [ $(git show --pretty=format:%H) != $(git show --pretty=format:%H origin) ]; then
+        echo "diff"
+    fi
+}
