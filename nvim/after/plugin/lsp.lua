@@ -80,7 +80,7 @@ tabnine:setup({
 	snippet_placeholder = "..",
 })
 
-local function config(_config)
+local function config(_config, custom_funcs)
 	return vim.tbl_deep_extend("force", {
 		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		on_attach = function()
@@ -97,11 +97,30 @@ local function config(_config)
 			nnoremap("[d", function() vim.diagnostic.goto_next() end)
 			nnoremap("]d", function() vim.diagnostic.goto_prev() end)
 			inoremap("<leader>Ks", function() vim.lsp.buf.signature_help() end)
+            if custom_funcs ~= nil then
+                if custom_funcs["test_file"] ~= nil then
+                    nnoremap("<leader>tf", custom_funcs["test_file"])
+                end
+                if custom_funcs["test_all"] ~= nil then
+                    nnoremap("<leader>tF", custom_funcs["test_all"])
+                end
+                if custom_funcs["debug_file"] ~= nil then
+                    nnoremap("<leader>td", custom_funcs["debug_file"])
+                end
+            end
 		end,
 	}, _config or {})
 end
 
-require("lspconfig").tsserver.setup(config())
+require("lspconfig").tsserver.setup(config(nil, {
+    test_all = function()
+        vim.cmd("vsplit | term npx jest")
+    end,
+    test_file = function()
+        local filename = vim.api.nvim_buf_get_name(0)
+        vim.cmd("vsplit | term npx jest " .. filename)
+    end,
+}))
 require("lspconfig").csharp_ls.setup(config())
 require("lspconfig").clangd.setup(config())
 require("lspconfig").eslint.setup(config())

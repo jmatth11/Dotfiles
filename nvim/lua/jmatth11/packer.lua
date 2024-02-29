@@ -73,7 +73,7 @@ return require("packer").startup(function(use)
     })
 
     -- local plugins
-    use("/media/jmatth93/ExtraDrive1/git/lua/notey.nvim")
+    -- use("/media/jmatth93/ExtraDrive1/git/lua/notey.nvim")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

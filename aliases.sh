@@ -8,8 +8,12 @@ function open_with_word() {
 
 # clean all branches except main, master, and current branch.
 function clean_branches() {
-    git branch | grep -v master | grep -v main | grep -v "* \w" | xargs git branch -d
+    git branch | grep -v -e master -e main -e "* \w" | xargs git branch -d
 }
+
+#function clean_branches_with_exclude() {
+#
+#}
 
 function git_clone() {
     git clone https://jmatth11:$GITHUB_TOKEN@github.com/$1 $HOME/git/$1
