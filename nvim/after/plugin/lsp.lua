@@ -104,9 +104,6 @@ local function config(_config, custom_funcs)
                 if custom_funcs["test_all"] ~= nil then
                     nnoremap("<leader>tF", custom_funcs["test_all"])
                 end
-                if custom_funcs["debug_file"] ~= nil then
-                    nnoremap("<leader>td", custom_funcs["debug_file"])
-                end
             end
 		end,
 	}, _config or {})

@@ -21,6 +21,21 @@ for _, language in ipairs(js_based_languages) do
     },
     {
       type = "pwa-node",
+      request = "launch",
+      name = "Launch File with Jest",
+      args = { '--no-cache' },
+      skipFiles = { '<node_internals>/**/*.js' },
+      port = 9229,
+      cwd = "${workspaceFolder}",
+      runtimeArgs = {
+          '--inspect-brk',
+          './node_modules/.bin/jest',
+          '--no-coverage',
+          '--', "${file}",
+      },
+    },
+    {
+      type = "pwa-node",
       request = "attach",
       name = "Attach",
       processId = require 'dap.utils'.pick_process,
