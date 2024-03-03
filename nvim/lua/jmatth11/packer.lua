@@ -71,8 +71,10 @@ return require("packer").startup(function(use)
         run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out"
     })
 
+
+    use("jmatth11/time-tracker.nvim")
     -- local plugins
-    -- use("/media/jmatth93/ExtraDrive1/git/lua/notey.nvim")
+    use("/media/jmatth93/ExtraDrive1/git/lua/notey.nvim")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
