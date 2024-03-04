@@ -34,3 +34,40 @@ function git_branch_needs_update() {
         echo "diff"
     fi
 }
+
+function reset_github_token() {
+    save_dir=$(pwd)
+    working_dir=$1
+    if [ -z $working_dir ]; then
+        working_dir="$HOME/git"
+    fi
+    cd $working_dir
+
+    # grab all user folders
+    users=$(ls -d -- */)
+    for d in $users;
+    do
+        cd $d
+        # grab all project folders
+        projects=$(ls -d -- */ 2> /dev/null)
+        for proj in $projects;
+        do
+            cd $proj
+            url=$(git remote get-url origin 2> /dev/null)
+            # if command failed we are not in a git repo
+            if [ $? -eq 0 ]; then
+                # define capture groups
+                capture="(.*):\\w*(@.*)"
+                # check if url matches capture
+                if [[ $url =~ $capture ]]
+                then
+                    # reset origin's url with current github token
+                    git remote set-url origin "${BASH_REMATCH[1]}:$GITHUB_TOKEN${BASH_REMATCH[2]}"
+                fi
+            fi
+            cd ..
+        done
+        cd ..
+    done
+    cd $save_dir
+}
