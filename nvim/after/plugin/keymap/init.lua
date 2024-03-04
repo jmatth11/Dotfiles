@@ -36,3 +36,6 @@ nnoremap("<C-u>", "<C-u>zz")
 vnoremap("<leader>y", "\"*y")
 -- paste from clipboard
 nnoremap("<leader>p", "\"*p")
+
+-- time-tracker
+nnoremap("<leader>tt", ":lua require('time-tracker').time_info()<CR>")
