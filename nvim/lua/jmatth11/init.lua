@@ -7,6 +7,7 @@ require("jmatth11.telescope")
 
 local autocmd = vim.api.nvim_create_autocmd
 
+-- command to delete trailing spaces
 autocmd({"BufWritePre"}, {
     group = jmatthGroup,
     pattern = "*",
