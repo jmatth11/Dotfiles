@@ -17,7 +17,7 @@ function clean_branches() {
 
 function git_clone() {
   if [ -z $GITHUB_TOKEN ]; then
-    git clone https://github.com/$1 $HOME/git/$1
+    git clone git@github.com:$1.git $HOME/git/$1
   else
     git clone https://jmatth11:$GITHUB_TOKEN@github.com/$1 $HOME/git/$1
   fi
