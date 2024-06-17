@@ -23,6 +23,10 @@ function git_clone() {
   fi
 }
 
+function git_tree() {
+  git log --oneline --graph --decorate --all
+}
+
 function docker_rm_containers() {
     sudo docker ps -a -q | xargs sudo docker rm
 }
