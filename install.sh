@@ -57,10 +57,11 @@ npm install -g typescript typescript-language-server
 sudo apt-get install python3-pylsp
 
 wget https://github.com/LuaLS/lua-language-server/releases/download/3.7.4/lua-language-server-3.7.4-linux-x64.tar.gz -O luals.tar.gz || exit 1
-tar -xzf luals.tar.gz.tar.gz || exit 1
-mv luals.tar.gz/bin/* $HOME/local/bin
-rm -rf luals.tar.gz/
-rm luals.tar.gz.tar.gz
+mkdir luals
+tar -xzf luals.tar.gz -C luals || exit 1
+mv luals/bin/* $HOME/local/bin
+rm -rf luals/
+rm luals.tar.gz
 
 
 
