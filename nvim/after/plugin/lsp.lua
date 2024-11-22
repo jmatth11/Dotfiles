@@ -109,7 +109,7 @@ local function config(_config, custom_funcs)
 	}, _config or {})
 end
 
-require("lspconfig").tsserver.setup(config(nil, {
+require("lspconfig").ts_ls.setup(config(nil, {
     test_all = function()
         vim.cmd("vsplit | term npx jest")
     end,

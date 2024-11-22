@@ -19,7 +19,10 @@ sudo apt-get install -y \
 
 echo "installing nvm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash || exit 1
-source $HOME/.bashrc
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 echo "installing latest node"
 nvm install node || exit 1
@@ -31,11 +34,16 @@ sudo tar -C /usr/local -xzf go.tar.gz || exit 1
 rm go.tar.gz
 touch $HOME/local_bashrc.sh
 mkdir -p $HOME/local/bin
+
+export GOROOT='/usr/local/go'
+export GOPATH='$HOME/go'
+export PATH='$GOPATH/bin:$GOROOT/bin:$PATH:$HOME/local/bin'
+
 echo "export GOROOT='/usr/local/go'" >> $HOME/local_bashrc.sh
 echo "export GOPATH='$HOME/go'" >> $HOME/local_bashrc.sh
 echo "export PATH='$GOPATH/bin:$GOROOT/bin:$PATH:$HOME/local/bin'" >> $HOME/local_bashrc.sh
 echo "source '$HOME/local_bashrc.sh'" >> $HOME/.bashrc
-source $HOME/.bashrc
+
 
 echo "installing Rust and Cargo"
 curl https://sh.rustup.rs -sSf | sh
@@ -43,16 +51,12 @@ curl https://sh.rustup.rs -sSf | sh
 echo "Installing gopls"
 go install golang.org/x/tools/gopls@latest || exit 1
 
-echo "intalling arduino cli"
-curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | BINDIR=~/local/bin sh || exit 1
-
 echo "installing language servers"
 npm i -g bash-language-server
 npm i -g vscode-langservers-extracted
 npm install -g dockerfile-language-server-nodejs
 cargo install htmx-lsp
 go get github.com/sqls-server/sqls
-go install github.com/arduino/arduino-language-server@latest
 npm install -g typescript typescript-language-server
 sudo apt-get install python3-pylsp
 
