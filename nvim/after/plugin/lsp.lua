@@ -109,7 +109,7 @@ local function config(_config, custom_funcs)
 	}, _config or {})
 end
 
-require("lspconfig").tsserver.setup(config(nil, {
+require("lspconfig").ts_ls.setup(config(nil, {
     test_all = function()
         vim.cmd("vsplit | term npx jest")
     end,
@@ -123,6 +123,8 @@ require("lspconfig").clangd.setup(config())
 require("lspconfig").eslint.setup(config())
 -- require("lspconfig").angularls.setup(config())
 require("lspconfig").cssls.setup(config())
+require("lspconfig").zls.setup({})
+require'lspconfig'.basedpyright.setup({})
 require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },
 	settings = {

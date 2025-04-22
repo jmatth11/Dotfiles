@@ -8,7 +8,7 @@ function open_with_word() {
 
 # clean all branches except main, master, and current branch.
 function clean_branches() {
-    git branch | grep -v -e master -e main -e "* \w" | xargs git branch -d
+    git branch | grep -v -e master -e main -e "* \w" -e dev | xargs git branch -d
 }
 
 #function clean_branches_with_exclude() {
