@@ -94,17 +94,17 @@ local function config(_config, custom_funcs)
 			nnoremap("<leader>ca", function() vim.lsp.buf.code_action() end)
 			nnoremap("<leader>rn", function() vim.lsp.buf.rename() end)
 			nnoremap("<leader><C-f>", function() vim.lsp.buf.format({ async = true }) end)
-			nnoremap("[d", function() vim.diagnostic.goto_next() end)
-			nnoremap("]d", function() vim.diagnostic.goto_prev() end)
+			nnoremap("[d", function() vim.diagnostic.get_next() end)
+			nnoremap("]d", function() vim.diagnostic.get_prev() end)
 			inoremap("<leader>Ks", function() vim.lsp.buf.signature_help() end)
-            if custom_funcs ~= nil then
-                if custom_funcs["test_file"] ~= nil then
-                    nnoremap("<leader>tf", custom_funcs["test_file"])
-                end
-                if custom_funcs["test_all"] ~= nil then
-                    nnoremap("<leader>tF", custom_funcs["test_all"])
-                end
-            end
+      if custom_funcs ~= nil then
+          if custom_funcs["test_file"] ~= nil then
+              nnoremap("<leader>tf", custom_funcs["test_file"])
+          end
+          if custom_funcs["test_all"] ~= nil then
+              nnoremap("<leader>tF", custom_funcs["test_all"])
+          end
+      end
 		end,
 	}, _config or {})
 end
@@ -123,8 +123,8 @@ require("lspconfig").clangd.setup(config())
 require("lspconfig").eslint.setup(config())
 -- require("lspconfig").angularls.setup(config())
 require("lspconfig").cssls.setup(config())
-require("lspconfig").zls.setup({})
-require'lspconfig'.basedpyright.setup({})
+require("lspconfig").zls.setup(config({}))
+require'lspconfig'.basedpyright.setup(config({}))
 require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },
 	settings = {
@@ -136,7 +136,7 @@ require("lspconfig").gopls.setup(config({
 		},
 	},
 }))
-require('lspconfig').lua_ls.setup({
+require('lspconfig').lua_ls.setup(config({
   settings = {
     Lua = {
       runtime = {
@@ -157,7 +157,7 @@ require('lspconfig').lua_ls.setup({
       },
     },
   },
-})
+}))
 
 local opts = {
 	-- whether to highlight the currently hovered symbol
