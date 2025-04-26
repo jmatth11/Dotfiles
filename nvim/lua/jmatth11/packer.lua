@@ -56,6 +56,7 @@ return require("packer").startup(function(use)
     use("gruvbox-community/gruvbox")
     use({"catppuccin/nvim", as = "catppuccin"})
     use("folke/tokyonight.nvim")
+    use({"bluz71/vim-moonfly-colors", as = "moonfly"})
 
     -- interact with tree sitter
     use("nvim-treesitter/playground")
