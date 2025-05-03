@@ -26,7 +26,7 @@ nvm install node || exit 1
 nvm use node || exit 1
 
 echo "installing Golang"
-wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz -O go.tar.gz || exit 1
+wget https://go.dev/dl/go1.24.0.linux-amd64.tar.gz -O go.tar.gz || exit 1
 sudo tar -C /usr/local -xzf go.tar.gz || exit 1
 rm go.tar.gz
 touch $HOME/local_bashrc.sh
