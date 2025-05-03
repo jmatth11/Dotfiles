@@ -1,2 +1,2 @@
-local jmatthcolorscheme = "tokyonight"
+local jmatthcolorscheme = "moonfly"
 vim.cmd("colorscheme " .. jmatthcolorscheme)
