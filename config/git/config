@@ -1,0 +1,43 @@
+[user]
+  name = Joshua Matthews
+  email = jmatth93@gmail.com
+
+[blame]
+  coloring = highlightRecent
+  date = relative
+
+[diff]
+  context = 3
+  renames = copies
+  interHunkContext = 10
+
+[init]
+  defaultBranch = main
+
+[log]
+  graphColors = blue,yellow,cyan,magenta,green,red
+
+[push]
+  autoSetupRemote = true # easier to push new branches
+  default = current # push only current branch by default
+  followTags = true # push also tags
+
+[pull]
+  rebase = false
+
+# Colors
+[color "blame"]
+  highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
+
+[color "branch"]
+  current  = magenta
+  local    = default
+  remote   = yellow
+  upstream = green
+  plain    = blue
+
+[color "diff"]
+  meta       = black bold
+  frag       = magenta
+  context    = white
+  whitespace = yellow reverse
