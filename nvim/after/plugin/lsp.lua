@@ -125,6 +125,7 @@ require("lspconfig").eslint.setup(config())
 require("lspconfig").cssls.setup(config())
 require("lspconfig").zls.setup(config({}))
 require'lspconfig'.basedpyright.setup(config({}))
+require('lspconfig').arduino_language_server.setup(config({}))
 require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },
 	settings = {
