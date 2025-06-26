@@ -52,6 +52,8 @@ for _, language in ipairs(js_based_languages) do
   }
 end
 
+require("dap-python").setup("~/git/patracorp/ml-service/.venv/bin/")
+
 local dapui = require('dapui')
 dapui.setup()
 local dap = require("dap")

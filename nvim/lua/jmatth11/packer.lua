@@ -64,6 +64,7 @@ return require("packer").startup(function(use)
 
     -- debugging protocol
     use("mfussenegger/nvim-dap")
+    use("mfussenegger/nvim-dap-python")
     use("rcarriga/nvim-dap-ui")
     use("theHamsta/nvim-dap-virtual-text")
     use("mxsdev/nvim-dap-vscode-js")
@@ -77,6 +78,8 @@ return require("packer").startup(function(use)
     use("jmatth11/time-tracker.nvim")
     -- local plugins
     -- use("/media/jmatth93/ExtraDrive1/git/lua/notey.nvim")
+
+    use("github/copilot.vim")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
