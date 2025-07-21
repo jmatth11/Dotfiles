@@ -273,10 +273,10 @@ return {
           local builtin = require "telescope.builtin"
 
           vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-          nnoremap("<leader>gd", function() builtin.lsp_definitions() end)
+          nnoremap("<leader>gd", function() vim.lsp.buf.definition() end)
           nnoremap("<leader>gD", function() vim.lsp.buf.declaration() end)
           nnoremap("<leader>gT", function() vim.lsp.buf.type_definition() end)
-          nnoremap("<leader>gr", function() builtin.lsp_references() end)
+          nnoremap("<leader>gr", function() vim.lsp.buf.references() end)
           nnoremap("<leader>gi", function() vim.lsp.buf.implementation() end)
           nnoremap("<leader>K", function() vim.lsp.buf.hover() end)
           nnoremap("<leader>Kf", function() vim.diagnostic.open_float() end)
