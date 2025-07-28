@@ -1,5 +1,5 @@
 {
-  "CopilotChat.nvim": { "branch": "main", "commit": "885801c69f812dbe89c719760f0bca2e51ab060c" },
+  "CopilotChat.nvim": { "branch": "main", "commit": "cbb846f9c3979bc8fe5dc7589cdab542adcd224b" },
   "LuaSnip": { "branch": "master", "commit": "3d5bced1b9ae69fa3f9b1942e28af5dbc537f946" },
   "MountainDew.vim": { "branch": "master", "commit": "5355c0411f83315698de13e7ffa7d2b530f01900" },
   "SchemaStore.nvim": { "branch": "main", "commit": "67d6c391e9a372d2d8701b5b8c9ae89455561fbf" },
@@ -58,6 +58,6 @@
   "vim-fugitive": { "branch": "master", "commit": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4" },
   "vim-gitgutter": { "branch": "main", "commit": "85ca3a087204e3a32cb2faa5d9d0451524e08720" },
   "vim-rhubarb": { "branch": "master", "commit": "5496d7c94581c4c9ad7430357449bb57fc59f501" },
-  "vscode-js-debug": { "branch": "main", "commit": "113fa913357d5380e40911c8e964831a5dce29f0" },
+  "vscode-js-debug": { "branch": "main", "commit": "0404ded9be9e631814f65829e973b4a8dd185d5a" },
   "yellowbeans.nvim": { "branch": "main", "commit": "179c274d3d496bea64f8705ea9c0bd48794048ae" }
 }
