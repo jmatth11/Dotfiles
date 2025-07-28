@@ -15,7 +15,8 @@ sudo apt-get install -y \
   make \
   cmake \
   ninja-build \
-  g++
+  g++ \
+  ncurses-term
 
 echo "installing nvm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash || exit 1
@@ -44,21 +45,8 @@ echo "export GOPATH='$HOME/go'" >> $HOME/local_bashrc.sh
 echo "export PATH='$GOPATH/bin:$GOROOT/bin:$PATH:$HOME/local/bin'" >> $HOME/local_bashrc.sh
 echo "source '$HOME/local_bashrc.sh'" >> $HOME/.bashrc
 
-
 echo "installing Rust and Cargo"
 curl https://sh.rustup.rs -sSf | sh
-
-echo "Installing gopls"
-go install golang.org/x/tools/gopls@latest || exit 1
-
-echo "installing language servers"
-npm i -g bash-language-server
-npm i -g vscode-langservers-extracted
-npm install -g dockerfile-language-server-nodejs
-cargo install htmx-lsp
-go get github.com/sqls-server/sqls
-npm install -g typescript typescript-language-server
-sudo apt-get install python3-pylsp
 
 wget https://github.com/LuaLS/lua-language-server/releases/download/3.7.4/lua-language-server-3.7.4-linux-x64.tar.gz -O luals.tar.gz || exit 1
 mkdir luals
