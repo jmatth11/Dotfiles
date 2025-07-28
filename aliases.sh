@@ -1,5 +1,5 @@
 # set up tmux alias to fix coloring
-alias tmux="TERM=screen-256color-bce tmux"
+#alias tmux="tmux"
 
 # open all files with a given word.
 function open_with_word() {
