@@ -166,7 +166,7 @@ return {
           --    looks like something i would have added while i was floundering
           init_options = { clangdFileStatus = true },
 
-          filetypes = { "c", "h", "cpp", "hpp"},
+          filetypes = { "c", "h", "cpp", "hpp" },
         },
 
         -- Tailwind CSS
@@ -200,6 +200,21 @@ return {
           filetypes = { "terraform", "tf" },
           root_dir = lspconfig.util.root_pattern("*.tf", ".git"),
         },
+        gdscript = {
+          -- in Godot we need to set external editor settings to
+          -- Exec-Path: /path/to/nvim
+          -- Exec-Flags: --server "\\\\.\\pipe\\godot.pipe" --remote-send "<esc>:n {file}<CR>:call cursor({line},{col})<CR>"
+          -- Use-External-Editor: true
+          -- For linux change pipe path to /tmp/godot.pipe
+          manual_install = true,
+          name = "godot",
+          cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
+          root_dir = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
+          on_attach = function(client, bufnr)
+            vim.api.nvim_command([[echo serverstart('\\.\pipe\godot.pipe')]])
+          end
+        }
+
       }
 
       local servers_to_install = vim.tbl_filter(function(key)
