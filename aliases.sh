@@ -15,7 +15,12 @@ function clean_branches() {
 #
 #}
 
-function git_clone() {
+
+function code_clone() {
+  git clone ssh://git@codeberg.org/$1.git $HOME/git/$1
+}
+
+function github_clone() {
   if [ -z $GITHUB_TOKEN ]; then
     git clone git@github.com:$1.git $HOME/git/$1
   else
