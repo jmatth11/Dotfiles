@@ -7,6 +7,6 @@ return {
         -- require("CopilotChat").setup({})
       end
     },
-    enabled = ((vim.fn.isdirectory("/home/jmatth93") == 1) or (vim.fn.isdirectory("/home/jmatthews") == 1)) == 0
+    enabled = false,
   }
 }
