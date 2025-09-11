@@ -47,7 +47,7 @@ return {
             name = "Launch File with Jest",
             args = { '--no-cache' },
             skipFiles = { '<node_internals>/**/*.js' },
-            port = 9229,
+            port = 9228,
             cwd = "${workspaceFolder}",
             runtimeArgs = {
               '--inspect-brk',
@@ -60,7 +60,7 @@ return {
             type = "pwa-node",
             request = "attach",
             name = "Attach",
-            port = 9229,
+            port = 9228,
             processId = require 'dap.utils'.pick_process,
             cwd = "${workspaceFolder}",
           },
