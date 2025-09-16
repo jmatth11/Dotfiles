@@ -1,7 +1,7 @@
 {
   "LuaSnip": { "branch": "master", "commit": "b3104910bb5ebf40492aadffae18f2528fa757d9" },
   "MountainDew.vim": { "branch": "master", "commit": "5355c0411f83315698de13e7ffa7d2b530f01900" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "3146720ee3a0c6e2446eedd492fb519d16f2e467" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "0fccf9234acfd981867cbd42c4101829e6808790" },
   "arctic.nvim": { "branch": "main", "commit": "46da33aeb3a8ee48533f41911b3aaf4f1541dd6f" },
   "base16-nvim": { "branch": "master", "commit": "a2907cc3cd661e0f89f7db1f4fc304782a676a7d" },
   "bluloco.nvim": { "branch": "main", "commit": "afc95b6696a0a568a5a186a7e563f6c9947d0d79" },
@@ -45,7 +45,7 @@
   "playground": { "branch": "master", "commit": "ba48c6a62a280eefb7c85725b0915e021a1a0749" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
-  "render-markdown.nvim": { "branch": "main", "commit": "9a746ff62a482f5eb722b3bfc7eefb2e9d638858" },
+  "render-markdown.nvim": { "branch": "main", "commit": "5b01324a5fce277183098eac0a2cdb9c1b446b73" },
   "ripgrep": { "branch": "master", "commit": "119a58a400ea948c2d2b0cd4ec58361e74478641" },
   "rose-pine": { "branch": "main", "commit": "72a04c4065345b51b56aed4859ea1d884f734097" },
   "solarized-osaka.nvim": { "branch": "main", "commit": "f796014c14b1910e08d42cc2077fef34f08e0295" },
