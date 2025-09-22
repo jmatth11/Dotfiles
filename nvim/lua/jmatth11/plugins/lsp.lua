@@ -29,9 +29,9 @@ return {
       "b0o/SchemaStore.nvim",
     },
     config = function()
+      -- TODO check if we can delete this now since moving to vim.lsp.config
       local extend = function(name, key, values)
-        local mod = require(string.format("lspconfig.configs.%s", name))
-        local default = mod.default_config
+        local default = vim.lsp.config[name]
         local keys = vim.split(key, ".", { plain = true })
         while #keys > 0 do
           local item = table.remove(keys, 1)
@@ -57,8 +57,6 @@ return {
         capabilities = require("cmp_nvim_lsp").default_capabilities()
       end
 
-      local lspconfig = require "lspconfig"
-
       -- packages from this list https://github.com/mason-org/mason-registry/blob/main/packages/astro-language-server/package.yaml
       local servers = {
         -- bash
@@ -82,13 +80,13 @@ return {
         },
         --delve = {
         --  filetypes = { "go" },
-        --  root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+        --  root_markers = { "go.mod", ".git" },
         --},
         -- Zig
         zls = {
           manual_install = true,
           filetypes = { "zig" },
-          root_dir = lspconfig.util.root_pattern("build.zig", "build.zig.lock", "zig.mod", ".git"),
+          root_markers = {"build.zig", "build.zig.lock", "zig.mod", ".git"},
         },
         -- Lua
         lua_ls = true,
@@ -100,7 +98,7 @@ return {
         basedpyright = {
           manual_install = true,
           filetypes = { "python" },
-          root_dir = lspconfig.util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git"),
+          root_markers = { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
         },
         -- Python linter/code formatter
         ruff = { manual_install = true },
@@ -108,12 +106,12 @@ return {
         --  manual_install = true,
         --  filetypes = { "python" },
         --  cmd = { "debugpy" },
-        --  root_dir = lspconfig.util.root_pattern("pyproject.toml", ".git"),
+        --  root_markers = { "pyproject.toml", ".git" },
         --},
         -- JS/TS stuff
         biome = true,
         -- ts_ls = {
-        --   root_dir = require("lspconfig").util.root_pattern "package.json",
+        --   root_markers = require("lspconfig").util.root_pattern "package.json",
         --   single_file = false,
         --   server_capabilities = {
         --     documentFormattingProvider = false,
@@ -198,7 +196,7 @@ return {
         -- Terraform
         terraformls = {
           filetypes = { "terraform", "tf" },
-          root_dir = lspconfig.util.root_pattern("*.tf", ".git"),
+          root_markers = { "*.tf", ".git" },
         },
         gdscript = {
           -- in Godot we need to set external editor settings to
@@ -209,7 +207,7 @@ return {
           manual_install = true,
           name = "godot",
           cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
-          root_dir = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
+          root_markers = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
         }
 
       }
@@ -237,7 +235,8 @@ return {
           capabilities = capabilities,
         }, config)
 
-        lspconfig[name].setup(config)
+        vim.lsp.config(name,config)
+        vim.lsp.enable(name)
       end
 
       local test_callbacks = {
