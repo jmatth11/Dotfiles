@@ -15,7 +15,6 @@ function clean_branches() {
 #
 #}
 
-
 function code_clone() {
   git clone ssh://git@codeberg.org/$1.git $HOME/git/$1
 }
