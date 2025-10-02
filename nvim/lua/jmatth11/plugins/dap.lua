@@ -7,7 +7,6 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "williamboman/mason.nvim",
-      "mfussenegger/nvim-dap-python",
     },
     config = function()
       local dap = require "dap"
@@ -74,9 +73,6 @@ return {
           }
         }
       end
-
-      -- Python setup
-      require("dap-python").setup("~/git/patracorp/ml-service/.venv/bin/")
 
       dap.listeners.after.event_initialized["dapui_config"] = function()
         ui.open({})
