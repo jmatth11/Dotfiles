@@ -11,9 +11,13 @@ function clean_branches() {
     git branch | grep -v -e master -e main -e "* \w" -e dev | xargs git branch -d
 }
 
-#function clean_branches_with_exclude() {
-#
-#}
+function kill_processes() {
+  if [ -z "$1" ]; then
+    echo "must supply a string argument."
+  else
+    ps -aux | grep nvim | awk '{print $2}' | xargs -I{} kill -9 {}
+  fi
+}
 
 function code_clone() {
   git clone ssh://git@codeberg.org/$1.git $HOME/git/$1

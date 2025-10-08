@@ -3,5 +3,8 @@ return {
   lazy=false,
   init = function()
     require("time-tracker").setup()
-  end
+  end,
+  dependencies = {
+    "nvim-lua/plenary.nvim", -- required for window management
+  },
 }
