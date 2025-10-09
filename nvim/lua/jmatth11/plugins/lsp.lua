@@ -308,8 +308,6 @@ return {
             end
           end
 
-          local filetype = vim.bo[bufnr].filetype
-
           -- Override server capabilities
           if settings.server_capabilities then
             for k, v in pairs(settings.server_capabilities) do
@@ -335,20 +333,6 @@ return {
           vim.diagnostic.config { virtual_text = true, virtual_lines = false }
         end
       end, { desc = "Toggle lsp_lines" })
-
-      local opts = {
-        -- whether to highlight the currently hovered symbol
-        -- disable if your cpu usage is higher than you want it
-        -- or you just hate the highlight
-        -- default: true
-        highlight_hovered_item = true,
-
-        -- whether to show outline guides
-        -- default: true
-        show_guides = true,
-      }
-
-      require("symbols-outline").setup(opts)
     end,
   },
   {
@@ -362,7 +346,6 @@ return {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "nvim-neotest/nvim-nio",
-      "simrat39/symbols-outline.nvim",
     },
     config = function()
       local lsp_caps = vim.lsp.protocol.make_client_capabilities()
