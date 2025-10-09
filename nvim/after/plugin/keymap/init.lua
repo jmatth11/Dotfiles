@@ -39,3 +39,15 @@ nnoremap("<leader>p", "\"*p")
 
 -- time-tracker
 nnoremap("<leader>tt", ":lua require('time-tracker').time_info()<CR>")
+
+-- Player.nvim keymaps
+nnoremap("<leader>pp", ":lua require('player').player_info()<CR>")
+nnoremap("<leader>pf", ":lua require('player').file_select()<CR>")
+
+nnoremap("<leader>ui", function()
+  -- require dap to load plugin
+  require("dap")
+  -- toggle ui
+  local ui = require("dapui")
+  ui.toggle()
+end)
