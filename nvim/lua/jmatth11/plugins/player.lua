@@ -1,6 +1,6 @@
 return {
-  dir = "/home/jmatth11/git/jmatth11/player.nvim",
-  --dir = "/home/jmatthews/git/jmatth11/player.nvim",
+  "jmatth11/player.nvim",
+  --dir = "/home/jmatth11/git/jmatth11/player.nvim",
   build = "zig build",
   config = true,
   opts = {
