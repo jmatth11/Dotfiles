@@ -6,6 +6,5 @@ return {
       "junegunn/gv.vim",
       "airblade/vim-gitgutter"
     },
-    lazy = true,
   }
 }
