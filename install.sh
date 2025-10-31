@@ -16,7 +16,8 @@ sudo apt-get install -y \
   cmake \
   ninja-build \
   g++ \
-  ncurses-term
+  ncurses-term \
+  fzf
 
 echo "installing nvm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash || exit 1
