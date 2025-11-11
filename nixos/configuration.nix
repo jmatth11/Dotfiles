@@ -122,6 +122,8 @@
     curl
     gnumake
     cmake
+    clang
+    zig
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
