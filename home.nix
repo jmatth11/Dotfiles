@@ -76,8 +76,8 @@
     enable = true;
     enableCompletion = true;
     initExtra = ''
-    	source ~/git/Dotfiles/aliases.sh
-    	source ~/git/Dotfiles/ps1.sh
+    	source ~/git/jmatth11/Dotfiles/aliases.sh
+    	source ~/git/jmatth11/Dotfiles/ps1.sh
     '';
   };
 
