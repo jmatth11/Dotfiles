@@ -1,7 +1,7 @@
 return {
   "jmatth11/player.nvim",
   --dir = "/home/jmatth11/git/jmatth11/player.nvim",
-  build = "zig build",
+  build = "./build.sh",
   config = true,
   opts = {
     parent_dir = vim.env.HOME .. "/music",
