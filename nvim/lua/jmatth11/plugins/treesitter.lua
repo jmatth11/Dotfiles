@@ -7,7 +7,8 @@ return {
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/nvim-treesitter-context",
     },
-    lazy = false,
+    event = "BufEnter *",
+    lazy = true,
     build = ":TSUpdate",
     opts = {
       ensure_installed = {

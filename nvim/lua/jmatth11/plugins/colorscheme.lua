@@ -1,6 +1,6 @@
 return {
   {
-    "tjdevries/colorbuddy.nvim",
+    "RRethy/base16-nvim",
     lazy = false,
     priority = 1000,
     config = function()
@@ -8,21 +8,56 @@ return {
     end,
   },
   -- good colorschemes
-  "Shatur/neovim-ayu",
-  "miikanissi/modus-themes.nvim",
-  "rebelot/kanagawa.nvim",
-  "gremble0/yellowbeans.nvim",
-  "rockyzhang24/arctic.nvim",
-  "craftzdog/solarized-osaka.nvim",
-  "RRethy/base16-nvim",
-  "uloco/bluloco.nvim",
-  "kepano/flexoki-neovim",
-  "vim-scripts/MountainDew.vim",
-  "maxmx03/fluoromachine.nvim",
+  {
+    "Shatur/neovim-ayu",
+    lazy = true,
+  },
+  {
+    "miikanissi/modus-themes.nvim",
+    lazy = true,
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true,
+  },
+  {
+    "gremble0/yellowbeans.nvim",
+    lazy = true,
+  },
+  {
+    "rockyzhang24/arctic.nvim",
+    lazy = true,
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = true,
+  },
+  {
+    "uloco/bluloco.nvim",
+    lazy = true,
+  },
+  {
+    "kepano/flexoki-neovim",
+    lazy = true,
+  },
+  {
+    "vim-scripts/MountainDew.vim",
+    lazy = true,
+  },
+  {
+    "maxmx03/fluoromachine.nvim",
+    lazy = true,
+  },
 
   -- okay colorschemes
-  { "rose-pine/neovim", name = "rose-pine" },
-  "jesseleite/nvim-noirbuddy",
-  "folke/tokyonight.nvim",
-  { "catppuccin/nvim", name = "catppuccin" },
+  { "rose-pine/neovim", name = "rose-pine", lazy = true },
+  {
+    "jesseleite/nvim-noirbuddy",
+    lazy = true,
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+  },
+  { "catppuccin/nvim", name = "catppuccin", lazy = true },
 }
