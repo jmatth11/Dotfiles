@@ -123,7 +123,7 @@
     gnumake
     cmake
     clang
-    clangd
+    clang-tools
     gcc
     zig
     fzf
