@@ -24,4 +24,16 @@ Searching for headers:
 nix-locate <header name>.h
 ```
 
+## Flake for Development
 
+Placing `flake.nix` files in your directory so you can have dependencies
+specific to your projects.
+
+Reference for templates for languages: https://github.com/the-nix-way/dev-templates
+
+Activating the flake development file:
+```bash
+nix develop
+```
+
+When you are done, type `exit` to leave the development flake.
