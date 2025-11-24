@@ -126,7 +126,7 @@
     gcc
     zig
     fzf
-    nix-index
+    pkg-config
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
