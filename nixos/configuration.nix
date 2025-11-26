@@ -99,6 +99,11 @@
 
   # enable bluetooth
   hardware.bluetooth.enable = true;
+  # Force bluetoothd to run in compatibility mode
+  systemd.services.bluetooth.serviceConfig.ExecStart = lib.mkForce [
+    ""
+    "${config.hardware.bluetooth.package}/libexec/bluetooth/bluetoothd -f /etc/bluetooth/main.conf -C"
+  ];
 
   # Install firefox.
   programs.firefox.enable = true;
