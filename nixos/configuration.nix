@@ -122,9 +122,9 @@
   environment.systemPackages = with pkgs; [
     vim
     wget
+    curl
     discord
     ghostty
-    curl
     gnumake
     cmake
     clang
@@ -132,7 +132,6 @@
     gcc
     zig
     fzf
-    pkg-config
     unzip
   ];
 
