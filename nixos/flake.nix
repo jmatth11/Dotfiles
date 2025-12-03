@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    player.url = "git+https://codeberg.org/jmatth11/player.nvim?ref=main";
+    player.url = "git+https://codeberg.org/jmatth11/blueZig?ref=main";
   };
 
   outputs = { self, nixpkgs, player, ... }@inputs:
