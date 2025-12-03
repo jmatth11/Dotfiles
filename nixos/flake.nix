@@ -7,9 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    player.url = "git+https://codeberg.org/jmatth11/player.nvim?ref=main";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, player, ... }@inputs:
     let
 	system = "x86_64-linux";
 	pkgs = nixpkgs.legacyPackages.${system};
@@ -19,6 +20,10 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
+        player.nixosModules.player
+        {
+          services.player.enable = true;
+        }
       ];
     };
   };
