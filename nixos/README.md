@@ -6,6 +6,12 @@ rebuild changes with:
 sudo nixos-rebuild switch --flake .#nixos
 ```
 
+Updating flake packages
+
+```bash
+nix flake update
+```
+
 ## Nix Packages
 
 Use [Nix Packages](https://search.nixos.org/packages) to find packages when setting up nixos config or flake files.
