@@ -1,11 +1,11 @@
 # open all files with a given word.
 function open_with_word() {
-    grep -rni $1 | awk '{print $1}' | sed 's/:[0-9]*://g' | xargs nvim
+  grep -rni $1 | awk '{print $1}' | sed 's/:[0-9]*://g' | xargs nvim
 }
 
 # clean all branches except main, master, and current branch.
 function clean_branches() {
-    git branch | grep -v -e master -e main -e "* \w" -e dev | xargs git branch -d
+  git branch | grep -v -e master -e main -e "* \w" -e dev | xargs git branch -d
 }
 
 # kill all processes matching a given string
@@ -96,4 +96,8 @@ function reset_github_token() {
         cd ..
     done
     cd $save_dir
+}
+
+function rm_dupes_path() {
+  export PATH=$(printf %s "$PATH" | awk -vRS=: -vORS= '!a[$0]++ {if (NR>1) printf(":"); printf("%s", $0) }' )
 }
