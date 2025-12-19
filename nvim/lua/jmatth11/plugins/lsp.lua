@@ -208,8 +208,10 @@ return {
           name = "godot",
           cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
           root_markers = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
+        },
+        rust_analyzer = {
+          manual_install = true,
         }
-
       }
 
       local servers_to_install = vim.tbl_filter(function(key)
