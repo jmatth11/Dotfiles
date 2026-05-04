@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# File to open today's notes file.
+#
+# - Creates directory $HOME/docs/notes, if it does not exist, to store/read the
+#   notes.
+# - Creates a note for today in the format YYYY-MM-DD.md if it does not exist.
+# - Defaults to nvim editor, but can be overwritten as a param or by the
+#   environment variable TODAY_EDITOR.
+#
+# Examples:
+# -- basic
+# > today
+#
+# -- with editor
+# > today vim
+#
+# -- with environment variable
+# > export TODAY_EDITOR=joe
+# > today
+
+set -euo pipefail
+
+notes_dir="$HOME/docs/notes"
+today_file="$notes_dir/$(date +%F).md"
+editor="${1:-${TODAY_EDITOR:-nvim}}"
+
+mkdir -p "$notes_dir"
+
+if [ ! -e "$today_file" ]; then
+  : >"$today_file"
+fi
+
+"$editor" "$today_file"
